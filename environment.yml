@@ -8,6 +8,4 @@ dependencies:
   - tornado=6.1
   - pyviz_comms=0.7.6
   - bokeh=2.2.3
-  - pip
-  - pip:
-    - jupyter_server_proxy
+  - jupyter_panel_proxy
