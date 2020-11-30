@@ -1,0 +1,48 @@
+# To reproduce: install 'anaconda-project', then 'anaconda-project run'
+name: PanelAppPractice
+description: |
+  Learning to serve a Panel app on mybinder
+maintainers:
+  - laurajludwig
+
+channels:
+  - pyviz
+
+dependencies: &deps
+  - python=3.7
+  - notebook ==6.1.5
+  - ipykernel ==5.3.4
+  - holoviews ==1.13.5
+  - hvplot ==0.6.0
+  - panel ==0.10.1
+  - param ==1.10.0
+  - pyviz_comms ==0.7.6
+  - bokeh ==2.2.3
+  - tornado==6.1
+
+packages: *deps
+
+commands:
+  dashboard:
+    unix: panel serve PanelAppPractice.ipynb
+    supports_http_options: true
+  notebook:
+    notebook: PanelAppPractice.ipynb
+  test:
+    unix: pytest --nbsmoke-run -k *.ipynb --ignore envs
+    windows: pytest --nbsmoke-run -k *.ipynb --ignore envs
+    env_spec: test
+  lint:
+    unix: pytest --nbsmoke-lint -k *.ipynb --ignore envs
+    windows: pytest --nbsmoke-lint -k *.ipynb --ignore envs
+    env_spec: test
+
+variables: {}
+downloads: {}
+
+env_specs:
+  default: {}
+  test:
+    packages:
+    - nbsmoke ==0.2.8
+    - pytest ==4.4.1
